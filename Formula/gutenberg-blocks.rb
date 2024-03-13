@@ -1,7 +1,8 @@
 class GutenbergBlocks < Formula
     desc "Script for instantiating and pulling Gutenberg blocks"
     homepage "https://github.com/burovoordeboeg/gutenberg-block-installer/"
-    url "https://github.com/burovoordeboeg/gutenberg-block-installer/blob/v0.0.2/versions/v0.0.2.tar.gz"
+    url "https://plugins.burovoordeboeg.nl/gutenberg-blocks.tar.gz"
+    sha256 "e5f1b04195194c7d0ddc215d6ef68b659df79cd9"
     license "MIT"
   
     def install
