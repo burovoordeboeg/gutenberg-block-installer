@@ -9,7 +9,7 @@ class GutenbergBlocks < Formula
   version "0.0.5"
 
   def install
-    system "unzip", "-q", "gutenberg-blocks.zip"
-    bin.install "gutenberg-block-installer-0.0.5/scripts/gutenberg-blocks.sh" => "gutenberg-blocks"
+    system "unzip", "-q", "homebrew-gutenberg-block-installer.zip"
+    bin.install "homebrew-gutenberg-block-installer-0.0.5/scripts/gutenberg-blocks.sh" => "gutenberg-blocks"
   end
 end
