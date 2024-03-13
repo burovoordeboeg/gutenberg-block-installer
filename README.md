@@ -11,23 +11,23 @@ brew tap burovoordeboeg/gutenberg-blocks
 brew install gutenberg-blocks
 ```
 
-##Gebruik
+## Gebruik
 
 Na installatie kun je de Gutenberg Blocks CLI-tool gebruiken door simpelweg het gutenberg-blocks commando uit te voeren. Hier zijn een paar voorbeelden van hoe je het kunt gebruiken:
 
-###Creëer een nieuw Gutenberg-blok:
+### Creëer een nieuw Gutenberg-blok:
 
 ```
 gutenberg-blocks create
 ```
 
-###Update de CLI-tool naar de nieuwste versie:
+### Update de CLI-tool naar de nieuwste versie:
 
 ```
 brew upgrade gutenberg-blocks
 ```
 
-##Bijwerken van de formule
+## Bijwerken van de formule
 
 Als de Gutenberg Blocks CLI-tool wordt bijgewerkt naar een nieuwe versie, moet de Homebrew-formule worden bijgewerkt om de wijzigingen weer te geven. Volg deze stappen om de formule bij te werken:
 
@@ -46,7 +46,7 @@ Als de Gutenberg Blocks CLI-tool wordt bijgewerkt naar een nieuwe versie, moet d
 	brew reinstall gutenberg-blocks
 	```
 
-##Bijdragen
+## Bijdragen
 
 Als je een probleem ontdekt of een functieverzoek hebt, kun je een [issue indienen](https://github.com/burovoordeboeg/gutenberg-block-installer/issues). We staan ook open voor [pull-aanvragen](https://github.com/burovoordeboeg/gutenberg-block-installer/pulls)!
 
