@@ -22,7 +22,7 @@ gutenberg-blocks create
 
 ### Include een Gutenberg block uit de library
 
->[!LET OP]
+>[!WARNING]
 > Deze functie is nog niet actief te gebruiken wegens het ontbreken van een block library. 
 
 ```bash
