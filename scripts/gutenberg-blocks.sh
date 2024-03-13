@@ -27,7 +27,7 @@ function create() {
     echo "Cloning Gutenberg Starter Block..."
     
     # Get default block from cloud
-    curl -o starterblock.tar.gz 'https://plugins.burovoordeboeg.nl/starterblock.tar.gz' -A bvdb
+    curl -o starterblock.tar.gz 'https://assets.burovoordeboeg.nl/blocks/starterblock.tar.gz' -A bvdb
     tar -xf starterblock.tar.gz
     rm -rf starterblock.tar.gz
 
