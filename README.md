@@ -6,26 +6,20 @@ Deze Homebrew-formule installeert de Gutenberg Blocks CLI-tool voor het maken en
 
 Je kunt de Gutenberg Blocks-formule installeren met behulp van Homebrew:
 
-```bash
+`bash
 brew tap burovoordeboeg/gutenberg-blocks
 brew install gutenberg-blocks
-```
+`
 
 ##Gebruik
 
 Na installatie kun je de Gutenberg Blocks CLI-tool gebruiken door simpelweg het gutenberg-blocks commando uit te voeren. Hier zijn een paar voorbeelden van hoe je het kunt gebruiken:
 
-###Creëer een nieuw Gutenberg-blok:
-
-```bash
-gutenberg-blocks create
-```
-
 ###Update de CLI-tool naar de nieuwste versie:
 
-```bash
+`bash
 brew upgrade gutenberg-blocks
-```
+`
 
 ##Bijwerken van de formule
 
@@ -36,15 +30,15 @@ Als de Gutenberg Blocks CLI-tool wordt bijgewerkt naar een nieuwe versie, moet d
 	git clone https://github.com/burovoordeboeg/homebrew-gutenberg-blocks.git
 	```
 2. Navigeer naar de map van de formule:
-	```bash
+	`bash
 	cd homebrew-gutenberg-blocks
-	```
+	`
 3. Bewerk het bestand gutenberg-blocks.rb en update de URL naar de nieuwe versie van de CLI-tool.
 4. Commit en push je wijzigingen naar de repository.
 5. Voer het volgende commando uit om de formule opnieuw te installeren:
-	```bash
+	`bash
 	brew reinstall gutenberg-blocks
-	```
+	`
 
 ##Bijdragen
 
