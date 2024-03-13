@@ -3,15 +3,14 @@ class GutenbergBlocks < Formula
   homepage "https://github.com/burovoordeboeg/gutenberg-block-installer"
 
   credential_helper = "/usr/local/bin/git-credential-osxkeychain"
-  url "https://github.com/burovoordeboeg/homebrew-gutenberg-block-installer/archive/refs/tags/v0.0.5.zip"
+  url "https://github.com/burovoordeboeg/homebrew-gutenberg-block-installer/"
 
   license "MIT"
   version "0.0.5"
 
   def install
-    cd buildpath/"homebrew-gutenberg-block-installer-0.0.5" do
-      system "unzip", "-q", "homebrew-gutenberg-block-installer-0.0.5.zip"
-      bin.install "scripts/gutenberg-blocks.sh" => "gutenberg-blocks"
-    end
+    system "curl", "-o", "gutenberg-blocks.zip", "-L", "https://github.com/burovoordeboeg/homebrew-gutenberg-block-installer/archive/refs/tags/v0.0.5.zip"
+    system "unzip", "-q", "gutenberg-blocks.zip"
+    bin.install "homebrew-gutenberg-block-installer-0.0.5/scripts/gutenberg-blocks.sh" => "gutenberg-blocks"
   end
 end
