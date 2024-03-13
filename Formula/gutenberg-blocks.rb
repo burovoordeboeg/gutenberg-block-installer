@@ -3,6 +3,7 @@ class GutenbergBlocks < Formula
   homepage "https://github.com/burovoordeboeg/gutenberg-block-installer/"
   url "https://github.com/burovoordeboeg/gutenberg-block-installer/archive/refs/tags/v0.0.2.zip"
   license "MIT"
+  version: "0.0.2"
 
   def install
     system "curl", "-o", "gutenberg-blocks.zip", "-L", "https://github.com/burovoordeboeg/gutenberg-block-installer/archive/refs/tags/v0.0.2.zip"
