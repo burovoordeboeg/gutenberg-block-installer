@@ -7,7 +7,7 @@ Deze Homebrew-formule installeert de Gutenberg Blocks CLI-tool voor het maken en
 Je kunt de Gutenberg Blocks-formule installeren met behulp van Homebrew:
 
 ```bash
-brew tap burovoordeboeg/gutenberg-blocks
+brew tap burovoordeboeg/homebrew-gutenberg-block-installer
 brew install gutenberg-blocks
 ```
 
@@ -32,7 +32,9 @@ gutenberg-blocks include <NAAM_BLOK>
 ### Update de CLI-tool naar de nieuwste versie:
 
 ```bash
-brew upgrade gutenberg-blocks
+brew untap homebrew-gutenberg-block-installer
+brew tap homebrew-gutenberg-block-installer
+brew install gutenberg-blocks
 ```
 
 ## Bijwerken van de formule
