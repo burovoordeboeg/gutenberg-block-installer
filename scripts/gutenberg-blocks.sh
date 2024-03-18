@@ -80,7 +80,7 @@ function create() {
             fi
 
             # Adjust path to block.json based on the INSTALL_PATH
-            BLOCK_JSON_PATH="$INSTALL_PATH/block.json"
+            BLOCK_JSON_PATH="$INSTALL_PATH/$FOLDER_NAME/block.json"
 
             # Replace the line starting with "name" with the new value
             sed -i '' -e "s,\"name\": \".*\", \"name\": \"$BLOCK_NAME\"," "$BLOCK_JSON_PATH"
