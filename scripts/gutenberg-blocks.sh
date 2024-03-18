@@ -74,13 +74,16 @@ function create() {
             FOLDER_NAME=$(echo "$BLOCK_NAME" | sed 's/^acf\///')
             if [ -d "$INSTALL_PATH/$FOLDER_NAME" ]; then
                 # If folder with same name exists, rename it with suffix
+                # TODO this conflicts with the block.json sed-command, probably due to wrong install-path
                 rename_folder "$FOLDER_NAME" 2
+                # Adjust path to block.json based on the INSTALL_PATH
+                BLOCK_JSON_PATH="$INSTALL_PATH/block.json"
             else
                 mv "$INSTALL_PATH/starter-block" "$INSTALL_PATH/$FOLDER_NAME"
+                # Adjust path to block.json based on the INSTALL_PATH
+                BLOCK_JSON_PATH="$INSTALL_PATH/$FOLDER_NAME/block.json"
             fi
 
-            # Adjust path to block.json based on the INSTALL_PATH
-            BLOCK_JSON_PATH="$INSTALL_PATH/$FOLDER_NAME/block.json"
 
             # Replace the line starting with "name" with the new value
             sed -i '' -e "s,\"name\": \".*\", \"name\": \"$BLOCK_NAME\"," "$BLOCK_JSON_PATH"
