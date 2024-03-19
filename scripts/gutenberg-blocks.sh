@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Set version number
-VERSION_NUMBER="0.0.14"
+VERSION_NUMBER="0.0.15"
 
 # Set Colorsy61dC*TkFr!cG8AB#VUoqFIAVWdzPb3D4HXT0ZzP
 _GREEN=$(tput setaf 2)      # Success
@@ -52,23 +52,23 @@ function create() {
         mv starter-block "$INSTALL_PATH" || { echo "${_RED}Error: Unable to move block to $INSTALL_PATH.${_RESET}"; cleanup_and_exit; return; }
 
         # Ask user to input the new value for "name"
-        echo -n "Enter the new value for the block name (e.g., acf/header), this value is also used to rename the folder: "
+        echo -n "Enter the new value for the ${_B}block name${_RESET} (e.g., acf/header), this value is also used to rename the folder (default: acf/startblock): "
         read BLOCK_NAME
 
         # Ask user to input the new value for "title"
-        echo -n "Enter the new value for the block title: "
+        echo -n "Enter the new value for the ${_B}block title${_RESET} (default: Startblock): "
         read BLOCK_TITLE
 
         # Ask user to input the new value for "description"
-        echo -n "Enter the new value for the block description: "
+        echo -n "Enter the new value for the ${_B}block description${_RESET} (default: Een block om mee te starten): "
         read BLOCK_DESCRIPTION
 
         # Ask user to input the new value for "category"
-        echo -n "Enter the new value for block category: "
+        echo -n "Enter the new value for ${_B}block category${_RESET} (default: common): "
         read BLOCK_CATEGORY
 
         # Ask user to input the new value for "icon"
-        echo -n "Enter the new value for block icon: "
+        echo -n "Enter the new value for ${_B}block icon${_RESET} (default: button): "
         read BLOCK_ICON
 
         # Check if BLOCK_NAME is not empty
@@ -169,6 +169,7 @@ function display_help {
 Usage: gutenberg-blocks [options]
 
 Options:
+  create          Creates a gutenberg block (interactively)
   -v, --version   Display the version
   -h, --help      Display this help message
 EOF
@@ -181,6 +182,9 @@ case "$1" in
         ;;
     "--help" | "-h")
         display_help
+        ;;
+    "create")
+        create
         ;;
     *)
         echo "Please use one of the registered commands: $0 {create|--version|--help}"
