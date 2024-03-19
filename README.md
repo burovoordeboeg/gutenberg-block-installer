@@ -29,12 +29,28 @@ gutenberg-blocks create
 gutenberg-blocks include <NAAM_BLOK>
 ```
 
+### Help en version
+
+Wil je weten wat de laatste versie is of welke commando's er in het script aanwezig zijn, gebruik daarvoor:
+```bash
+# Check het versienummer
+gutenberg-blocks -v
+# Of
+gutenberg-blocks --version
+
+# -----
+
+# Help functie
+gutenberg-blocks -h
+# Of
+gutenberg-blocks --help
+```
+
 ### Update de CLI-tool naar de nieuwste versie:
 
 ```bash
-brew untap homebrew-gutenberg-block-installer
-brew tap homebrew-gutenberg-block-installer
-brew install gutenberg-blocks
+brew up
+brew upgrade
 ```
 
 ## Bijwerken van de formule
