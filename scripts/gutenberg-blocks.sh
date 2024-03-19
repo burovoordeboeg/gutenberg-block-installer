@@ -165,7 +165,7 @@ function display_version {
 
 # Function to display script help
 function display_help {
-    echo << EOF
+    cat << EOF
 Usage: gutenberg-blocks [options]
 
 Options:
@@ -174,9 +174,7 @@ Options:
 EOF
 }
 
-# =================================================================
-# Case statement to call the correct method when calling the script
-# =================================================================
+# Case statement to call the correct method based on command-line arguments
 case "$1" in
     "--version" | "-v")
         display_version
