@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Set version number
+VERSION_NUMBER="0.0.13"
+
 # Set Colorsy61dC*TkFr!cG8AB#VUoqFIAVWdzPb3D4HXT0ZzP
 _GREEN=$(tput setaf 2)      # Success
 _YELLOW=$(tput setaf 3)     # Notice or question
@@ -15,12 +18,6 @@ ROOT=$(pwd)
 # Set user
 USER=$(whoami)
 GROUP=$(id -g -n)
-
-# Import Formula class from Homebrew
-HOMEBREW_PREFIX=$(brew --prefix) . "$HOMEBREW_PREFIX/Library/Homebrew/formula.rb"
-
-# Get the version number from the Formula
-FORMULA_VERSION=$(GutenbergBlocks.new.version)
 
 # Get the default blocks folder path based on the current directory
 DEFAULT_FOLDER="templates/blocks"
@@ -163,7 +160,7 @@ function check_directory_exists() {
 
 # Function to display script version
 function display_version {
-    echo "Gutenberg Blocks Script v$FORMULA_VERSION"
+    echo "Gutenberg Blocks Script v$VERSION_NUMBER"
 }
 
 # Function to display script help
