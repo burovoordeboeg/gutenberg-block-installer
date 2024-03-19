@@ -4,12 +4,12 @@ class GutenbergBlocks < Formula
   credential_helper = "/usr/local/bin/git-credential-osxkeychain"
   url "https://github.com/burovoordeboeg/homebrew-gutenberg-block-installer/"
   license "MIT"
-  version "0.0.10"
+  version "0.0.11"
 
   def install
-    system "curl", "-o", "gutenberg-blocks.zip", "-L", "https://github.com/burovoordeboeg/homebrew-gutenberg-block-installer/archive/refs/tags/0.0.10.zip"
+    system "curl", "-o", "gutenberg-blocks.zip", "-L", "https://github.com/burovoordeboeg/homebrew-gutenberg-block-installer/archive/refs/tags/0.0.11.zip"
     system "unzip", "-q", "gutenberg-blocks.zip"
-    bin.install "homebrew-gutenberg-block-installer-0.0.10/scripts/gutenberg-blocks.sh" => "gutenberg-blocks"
+    bin.install "homebrew-gutenberg-block-installer-0.0.11/scripts/gutenberg-blocks.sh" => "gutenberg-blocks"
   end
 
   # Function to display script version
@@ -37,10 +37,5 @@ class GutenbergBlocks < Formula
     else
       # Add logic to run the script here
     end
-  end
-
-  # Override the `prefix.install` method to invoke `run_script` after installation
-  def prefix.install
-    run_script
   end
 end
