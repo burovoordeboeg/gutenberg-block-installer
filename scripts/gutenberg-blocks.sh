@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Set version number
-VERSION_NUMBER="0.0.13"
+VERSION_NUMBER="0.0.14"
 
 # Set Colorsy61dC*TkFr!cG8AB#VUoqFIAVWdzPb3D4HXT0ZzP
 _GREEN=$(tput setaf 2)      # Success
