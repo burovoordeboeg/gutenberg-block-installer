@@ -16,6 +16,12 @@ ROOT=$(pwd)
 USER=$(whoami)
 GROUP=$(id -g -n)
 
+# Import Formula class from Homebrew
+HOMEBREW_PREFIX=$(brew --prefix) . "$HOMEBREW_PREFIX/Library/Homebrew/formula.rb"
+
+# Get the version number from the Formula
+FORMULA_VERSION=$(GutenbergBlocks.new.version)
+
 # Get the default blocks folder path based on the current directory
 DEFAULT_FOLDER="templates/blocks"
 
@@ -155,14 +161,33 @@ function check_directory_exists() {
     fi
 }
 
+# Function to display script version
+function display_version {
+    echo "Gutenberg Blocks Script v$FORMULA_VERSION"
+}
+
+# Function to display script help
+function display_help {
+    echo << EOF
+Usage: gutenberg-blocks [options]
+
+Options:
+  -v, --version   Display the version
+  -h, --help      Display this help message
+EOF
+}
+
 # =================================================================
 # Case statement to call the correct method when calling the script
 # =================================================================
 case "$1" in
-    "create")
-        create
+    "--version" | "-v")
+        display_version
+        ;;
+    "--help" | "-h")
+        display_help
         ;;
     *)
-        echo "Please use one of the registred commands: $0 {create|}"
+        echo "Please use one of the registered commands: $0 {create|--version|--help}"
         ;;
 esac
