@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Set version number
-VERSION_NUMBER="0.1.1"
+VERSION_NUMBER="0.1.2"
 
 # Set Colorsy61dC*TkFr!cG8AB#VUoqFIAVWdzPb3D4HXT0ZzP
 _GREEN=$(tput setaf 2)      # Success
@@ -150,9 +150,10 @@ function install() {
     # Check if the specified block name already exists
     BLOCK_FOLDER="$INSTALL_PATH/$BLOCK_NAME"
     if [ -d "$BLOCK_FOLDER" ]; then
-        echo "{$_YELLOW}Block with the same name already exits, the folder will be renamed.{$_RESET}"
         # If block with the same name exists, rename it with suffix
         rename_folder "$BLOCK_NAME" 2
+
+        echo "{$_YELLOW}Block with the same name already exits, the folder will be renamed to $BLOCK_NAME.{$_RESET}"
     fi
 
     # Download block from the specified URL
@@ -165,7 +166,7 @@ function install() {
     rm -rf "$BLOCK_NAME.tar.gz"
 
     # Move block to the specified location
-    mv "$BLOCK_NAME" "$INSTALL_PATH/$BLOCK_NAME" || { echo "${_RED}Error: Unable to move block to $INSTALL_PATH/$BLOCK_NAME.${_RESET}"; return 1; }
+    mv "$BLOCK_NAME" "$INSTALL_PATH/" || { echo "${_RED}Error: Unable to move block to $INSTALL_PATH/$BLOCK_NAME.${_RESET}"; return 1; }
 
     echo "${_GREEN}Block $BLOCK_NAME installed successfully.${_RESET}"
 }
@@ -182,33 +183,6 @@ function rename_folder() {
         mv "$INSTALL_PATH/starter-block" "$INSTALL_PATH/$new_name" || { echo "${_RED}Error: Unable to rename block folder.${_RESET}"; cleanup_and_exit; return; }
         INSTALL_PATH="$INSTALL_PATH/$new_name"
     fi
-}
-
-# Function to get the blocklist from the server
-function fetch_blocklist {
-    local blocklist_url="https://blocks.burovoordeboeg.nl/library/blocklist.json"
-
-    # Get the list from the URL
-    local blocklist_json=$(curl -sSL "$blocklist_url" -A bvdb)
-
-    # Check of the blockslist kon worden opgehaald
-    if [ -z "$blocklist_json" ]; then
-        echo "${_RED}Error: Could not retreive blockslist from $blocklist_url.${_RESET}"
-        return 1
-    fi
-
-    # Get the names from the blocks
-    local block_names=($(echo "$blocklist_json" | jq -r '.blocks[].name'))
-
-    # Gebruik de bloknamen voor auto-completion
-    COMPREPLY=($(compgen -W "${block_names[*]}" -- "$cur"))
-}
-
-# Function to install a block with auto-completion
-function install_with_autocomplete() {
-    local cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=()
-    fetch_blocklist
 }
 
 # Function to remove folders on failure
@@ -261,6 +235,3 @@ case "$1" in
         echo "Please use one of the registered commands: $0 {create|install|require|--version|--help}"
         ;;
 esac
-
-# Auto-completion for install command
-complete -F install_with_autocomplete install require

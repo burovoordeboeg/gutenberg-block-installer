@@ -22,7 +22,7 @@ gutenberg-blocks create
 
 ### Include een Gutenberg block uit de library
 
-Je kan ook blokken uit de blocks-library halen met het install (alias is require). Autocomplete wordt ook ondersteund. Dus als je de eerste paar letters typt en dan de tab-toets gebruikt geeft de CLI de optie(s) weer. 
+Je kan ook blokken uit de blocks-library halen met het install (alias is require).
 ```bash
 gutenberg-blocks install <NAAM_BLOK>
 # Of
