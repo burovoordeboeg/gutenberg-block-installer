@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Set version number
-VERSION_NUMBER="0.1.0"
+VERSION_NUMBER="0.1.1"
 
 # Set Colorsy61dC*TkFr!cG8AB#VUoqFIAVWdzPb3D4HXT0ZzP
 _GREEN=$(tput setaf 2)      # Success
@@ -184,6 +184,33 @@ function rename_folder() {
     fi
 }
 
+# Function to get the blocklist from the server
+function fetch_blocklist {
+    local blocklist_url="https://blocks.burovoordeboeg.nl/library/blocklist.json"
+
+    # Get the list from the URL
+    local blocklist_json=$(curl -sSL "$blocklist_url" -A bvdb)
+
+    # Check of the blockslist kon worden opgehaald
+    if [ -z "$blocklist_json" ]; then
+        echo "${_RED}Error: Could not retreive blockslist from $blocklist_url.${_RESET}"
+        return 1
+    fi
+
+    # Get the names from the blocks
+    local block_names=($(echo "$blocklist_json" | jq -r '.blocks[].name'))
+
+    # Gebruik de bloknamen voor auto-completion
+    COMPREPLY=($(compgen -W "${block_names[*]}" -- "$cur"))
+}
+
+# Function to install a block with auto-completion
+function install_with_autocomplete() {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=()
+    fetch_blocklist
+}
+
 # Function to remove folders on failure
 function cleanup_and_exit() {
     echo "${_RED}Error occurred. Cleaning up...${_RESET}"
@@ -234,3 +261,6 @@ case "$1" in
         echo "Please use one of the registered commands: $0 {create|install|require|--version|--help}"
         ;;
 esac
+
+# Auto-completion for install command
+complete -F install_with_autocomplete install require

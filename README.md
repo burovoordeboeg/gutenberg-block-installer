@@ -22,11 +22,11 @@ gutenberg-blocks create
 
 ### Include een Gutenberg block uit de library
 
->[!WARNING]
-> Deze functie is nog niet actief te gebruiken wegens het ontbreken van een block library. 
-
+Je kan ook blokken uit de blocks-library halen met het install (alias is require). Autocomplete wordt ook ondersteund. Dus als je de eerste paar letters typt en dan de tab-toets gebruikt geeft de CLI de optie(s) weer. 
 ```bash
-gutenberg-blocks include <NAAM_BLOK>
+gutenberg-blocks install <NAAM_BLOK>
+# Of
+gutenberg-blocks require <NAAM_BLOK>
 ```
 
 ### Help en version
@@ -37,7 +37,6 @@ Wil je weten wat de laatste versie is of welke commando's er in het script aanwe
 gutenberg-blocks -v
 # Of
 gutenberg-blocks --version
-
 # -----
 
 # Help functie
