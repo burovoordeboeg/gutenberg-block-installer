@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Set version number
-VERSION_NUMBER="0.0.15"
+VERSION_NUMBER="0.1.0"
 
 # Set Colorsy61dC*TkFr!cG8AB#VUoqFIAVWdzPb3D4HXT0ZzP
 _GREEN=$(tput setaf 2)      # Success
@@ -30,7 +30,7 @@ function create() {
     echo "Cloning Gutenberg Starter Block..."
     
     # Get default block from cloud
-    curl -o starterblock.tar.gz 'https://assets.burovoordeboeg.nl/blocks/starterblock.tar.gz' -A bvdb
+    curl -o starterblock.tar.gz 'https://blocks.burovoordeboeg.nl/library/starterblock.tar.gz' -A bvdb
     tar -xf starterblock.tar.gz
     rm -rf starterblock.tar.gz
 
@@ -77,7 +77,6 @@ function create() {
             FOLDER_NAME=$(echo "$BLOCK_NAME" | sed 's/^acf\///')
             if [ -d "$INSTALL_PATH/$FOLDER_NAME" ]; then
                 # If folder with same name exists, rename it with suffix
-                # TODO this conflicts with the block.json sed-command, probably due to wrong install-path
                 rename_folder "$FOLDER_NAME" 2
                 # Adjust path to block.json based on the INSTALL_PATH
                 BLOCK_JSON_PATH="$INSTALL_PATH/block.json"
@@ -129,6 +128,49 @@ function create() {
     fi
 }
 
+# Function to install a block
+function install() {
+    local BLOCK_NAME="$1"
+
+    # Check if BLOCK_NAME is provided
+    if [ -z "$BLOCK_NAME" ]; then
+        echo "${_RED}Error: Block name is missing.${_RESET}"
+        display_help
+        return 1
+    fi
+
+    # Ask user for the folder path to install the block (default: templates/blocks)
+    echo -n "Enter the folder path to install the block (default: $DEFAULT_FOLDER): "
+    read INSTALL_PATH
+    INSTALL_PATH=${INSTALL_PATH:-$DEFAULT_FOLDER}
+
+    # Check if the specified directory exists
+    check_directory_exists "$INSTALL_PATH" || { cleanup_and_exit; return; }
+
+    # Check if the specified block name already exists
+    BLOCK_FOLDER="$INSTALL_PATH/$BLOCK_NAME"
+    if [ -d "$BLOCK_FOLDER" ]; then
+        echo "{$_YELLOW}Block with the same name already exits, the folder will be renamed.{$_RESET}"
+        # If block with the same name exists, rename it with suffix
+        rename_folder "$BLOCK_NAME" 2
+    fi
+
+    # Download block from the specified URL
+    echo "Downloading block $BLOCK_NAME..."
+    curl -o "$BLOCK_NAME.tar.gz" "https://blocks.burovoordeboeg.nl/library/$BLOCK_NAME.tar.gz" || { echo "${_RED}Error: Failed to download block $BLOCK_NAME.${_RESET}"; return 1; }
+
+    # Extract block
+    echo "Extracting block $BLOCK_NAME..."
+    tar -xf "$BLOCK_NAME.tar.gz" || { echo "${_RED}Error: Failed to extract block $BLOCK_NAME.${_RESET}"; return 1; }
+    rm -rf "$BLOCK_NAME.tar.gz"
+
+    # Move block to the specified location
+    mv "$BLOCK_NAME" "$INSTALL_PATH/$BLOCK_NAME" || { echo "${_RED}Error: Unable to move block to $INSTALL_PATH/$BLOCK_NAME.${_RESET}"; return 1; }
+
+    echo "${_GREEN}Block $BLOCK_NAME installed successfully.${_RESET}"
+}
+
+
 # Function to rename folder with suffix
 function rename_folder() {
     local folder_name="$1"
@@ -148,7 +190,6 @@ function cleanup_and_exit() {
     rm -rf "$INSTALL_PATH" starter-block starterblock.tar.gz
 }
 
-# Function to check if the directory exists
 # Function to check if the directory exists
 function check_directory_exists() {
     local dir="$1"
@@ -186,7 +227,10 @@ case "$1" in
     "create")
         create
         ;;
+    "install" | "require")
+        install "$2"
+        ;;
     *)
-        echo "Please use one of the registered commands: $0 {create|--version|--help}"
+        echo "Please use one of the registered commands: $0 {create|install|require|--version|--help}"
         ;;
 esac
